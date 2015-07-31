@@ -56,7 +56,7 @@ def get_alternate_words(word, maxWords):
   return result
 
 timeout = 30
-max = 100
+max_questions = 100
 
 def print_a_question(number, word, choices, words_by_number, words):
   print ""
@@ -67,7 +67,8 @@ def print_a_question(number, word, choices, words_by_number, words):
   for i in range(5):
     print "%d. %s"%(i+1,words[words_by_number[choices[i]]][1])
 
-for x in range(max):
+correct = 0
+for x in range(max_questions):
   word = random.choice(untested)
   choices = get_alternate_words(word, totalWords)
   choices.append(word)
@@ -82,7 +83,9 @@ for x in range(max):
   tcflush(sys.stdin, TCIOFLUSH)
 
   if int(choice) == (correct_choice + 1):
+    correct += 1
     print "Correct Answer %s"%choice
   else:
     print "Wrong."
     print "your choice is %s, but right answer is %d"%(choice, correct_choice+1)
+  print "Score so far: %d/%d (%d)%%"%(correct,x+1,(correct*100.0)/(x+1))
