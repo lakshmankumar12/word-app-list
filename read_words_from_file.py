@@ -2,6 +2,19 @@ import re
 import sys
 
 def get_words(fileName):
+  '''
+    File should contain in the format:
+        abase v. To lower in position, estimation, or the like
+        abbess n. The lady superior of a nunnery.
+        abbey n. The group of buildings which collectively form the dwelling-place of a society of monks or nuns.
+
+    It will return 
+      1. a dict - words
+        word: [type,meaning,number]
+      2. a dict - words_by_number
+        number: word
+      3. int: total words = len(words)
+  '''
   types=['n','v','adv?','adj','interj?','conj','prep','pa','Latin','Greek']
   pattern=r'^(.*)\b('
   for i in types[:-1]:
