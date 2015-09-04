@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="vocab_builder">
+<head>
+    <title>Vocab Builder</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script>
+        angular.module("vocab_builder", []);
+    </script>
+    <script src="controllers/vocab_builder.js"></script>
+</head>
+<body ng-controller="vocab_builder_controller">
+    <div class="navbar navbar-inverse">
+        <a class="navbar-brand" href="#">BUILD YOUR VOCABULARY</a>
+    </div>
+    <div class="col-xs-8">
+      <div class="well" >
+            <h3>
+                <strong>{{current_result.question}}</strong>
+            </h3>
+            
+        </div>
+    </div>
+</body>
+</html>
