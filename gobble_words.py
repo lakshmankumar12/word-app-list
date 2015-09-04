@@ -44,6 +44,7 @@ def print_a_question(number, word, choices, words_by_number, words):
 correct = 0
 for x in range(max_questions):
   word = random.choice(untested)
+  untested.remove(word)
   choices = get_alternate_words(word, totalWords)
   choices.append(word)
   random.shuffle(choices)
