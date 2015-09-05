@@ -3,6 +3,7 @@
 <head>
     <title>Vocab Builder</title>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <script>
@@ -18,20 +19,20 @@
       <div>
           <h2><strong>{{current_result.question}}</strong></h2>
       </div>
-      <div class="radio" >
-              <label><input type="radio" name="answerchoice" ng-click="checkAnswer(0)">{{current_result.choice0}}</label>
+      <div class="radio">
+              <label><input type="radio" id="choice0radio" name="answerchoice" ng-click="checkAnswer(0)">{{current_result.choice0}}</label>
       </div>
-      <div class="radio" >
-              <label><input type="radio" name="answerchoice" ng-click="checkAnswer(1)">{{current_result.choice1}}</label>
+      <div class="radio">
+              <label><input type="radio" id="choice1radio" name="answerchoice" ng-click="checkAnswer(1)">{{current_result.choice1}}</label>
       </div>
-      <div class="radio" >
-              <label><input type="radio" name="answerchoice" ng-click="checkAnswer(2)">{{current_result.choice2}}</label>
+      <div class="radio">
+              <label><input type="radio" id="choice2radio" name="answerchoice" ng-click="checkAnswer(2)">{{current_result.choice2}}</label>
       </div>
-      <div class="radio" >
-              <label><input type="radio" name="answerchoice" ng-click="checkAnswer(3)">{{current_result.choice3}}</label>
+      <div class="radio">
+              <label><input type="radio" id="choice3radio" name="answerchoice" ng-click="checkAnswer(3)">{{current_result.choice3}}</label>
       </div>
-      <div class="radio" >
-              <label><input type="radio" name="answerchoice" ng-click="checkAnswer(4)">{{current_result.choice4}}</label>
+      <div class="radio">
+              <label><input type="radio" id="choice4radio" name="answerchoice" ng-click="checkAnswer(4)">{{current_result.choice4}}</label>
       </div>
       <div ng-hide="answered">
             <h3>

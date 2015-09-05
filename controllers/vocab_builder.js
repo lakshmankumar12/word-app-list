@@ -81,6 +81,11 @@ todoApp.controller("vocab_builder_controller", function ($scope, $http) {
           'choice3'  : 'Fetching choices',
           'choice4'  : 'Fetching choices'
        }
+       for (var i = 0 ; i < 5 ; i++) {
+         var id = "#choice" + i + "radio";
+         $(id).prop('checked', false);
+         console.log("setting id " + id);
+       }
 
        for (var i = 0 ; i < 5 ; i++) {
          $http.get(getUrlForWord(choices[i])).
@@ -103,20 +108,28 @@ todoApp.controller("vocab_builder_controller", function ($scope, $http) {
        $scope.current_result = nextQuestion;
        $scope.answered = 0;
 
-       $scope.totalAsked += 1;
     }
 
     $scope.checkAnswer = function (answer) {
+      var already_answered = $scope.answered;
+      $scope.answered = 1;
+      if (!already_answered) {
+        $scope.totalAsked += 1;
+      }
       if (answer == rightAnswer) {
         $scope.answer_result = "Your answer is right";
-        if ($scope.answered == 0) {
+        if (!already_answered) {
           $scope.rightAnswer += 1;
-          $scope.rightPercent = ($scope.rightAnswer * 100.0/ $scope.totalAsked)
         }
       } else {
         $scope.answer_result = "Your answer is wrong";
       }
-      $scope.answered = 1;
+      var percent = (($scope.rightAnswer * 100.0 ) / $scope.totalAsked).toString();
+      if (percent.indexOf('.') == -1) {
+        $scope.rightPercent = percent;
+      } else {
+        $scope.rightPercent = percent.slice(0, (percent.indexOf("."))+3);
+      }
     }
 
     $scope.getNextQuestion();
