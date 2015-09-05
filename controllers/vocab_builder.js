@@ -48,7 +48,7 @@ function shuffle(array) {
   return array;
 }
 
-todoApp.constant("dataUrl", "word-list")
+todoApp.constant("dataUrl", "word-list?word-number=")
   .controller("vocab_builder_controller", function ($scope) {
     $scope.current_result = current_result;
 
@@ -79,6 +79,16 @@ todoApp.constant("dataUrl", "word-list")
        }
 
        $scope.current_result = nextQuestion;
+       $scope.answered = 0;
+    }
+
+    $scope.checkAnswer = function (answer) {
+      if (answer == rightAnswer) {
+        $scope.answer_result = "Your answer is right";
+      } else {
+        $scope.answer_result = "Your answer is wrong";
+      }
+      $scope.answered = 1;
     }
 
     $scope.getNextQuestion();
