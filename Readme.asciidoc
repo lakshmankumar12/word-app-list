@@ -7,7 +7,7 @@ to build a word-list tester.
 Word source
 -----------
 
-We gather about 5000+ words from [http://www.freevocabulary.com/]here. That
+We gather about 5000+ words from http://www.freevocabulary.com/[here]. That
 page itself is saved as +save_index_html+ in this repository.
 
 Arranging the words in a script-friendly format
@@ -30,7 +30,7 @@ Updating words-list as a service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The words will be fetched one at a time on a need basis. This requires a API
-service that can dish out the words. I picked [http://deployd.com/]deployd
+service that can dish out the words. I picked http://deployd.com/[deployd]
 for this purpose. The collecton itself is configured manually (I will soon
 update the config.json for the collection).
 
