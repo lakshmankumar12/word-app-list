@@ -1,0 +1,47 @@
+Vocab Builder
+=============
+
+This is my first stab at angular JS, well, even javascript itself. The idea is
+to build a word-list tester.
+
+Word source
+-----------
+
+We gather about 5000+ words from [http://www.freevocabulary.com/]here. That
+page itself is saved as +save_index_html+ in this repository.
+
+Arranging the words in a script-friendly format
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+I used https://github.com/aaronsw/html2text[html2text] to grab just the text
+and using vim, removed all other stuff expect the words themselves. This
+filtered stuff is kept in +words_one_line+, also saved in this repository
+
+Testing the goodness
+~~~~~~~~~~~~~~~~~~~~
+
+The +gobble_words.py+ script, in the repository is a command-line python script
+to present the same questions.
+
+The web page
+------------
+
+Updating words-list as a service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The words will be fetched one at a time on a need basis. This requires a API
+service that can dish out the words. I picked [http://deployd.com/]deployd
+for this purpose. The collecton itself is configured manually (I will soon
+update the config.json for the collection).
+
+The deployd's database (mongodb) is populated using its REST api - done via
+the +update_deployd.py+ script.
+
+The deployd's webserver itself is useful as serving for web-server for the
+application as well.
+
+The web-app
+~~~~~~~~~~~
+
+This is written with the angular-js library - +vocab_builder.html+ and
++controllers/vocab_builder.js+
