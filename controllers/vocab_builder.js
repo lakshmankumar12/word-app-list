@@ -2,11 +2,11 @@ var todoApp = angular.module("vocab_builder");
 
 var current_result = {
    'question' : "Question",
-   'choice1'  : "Choice1",
-   'choice2'  : "Choice2",
-   'choice3'  : "Choice3",
-   'choice4'  : "Choice4",
-   'choice5'  : "Choice5"
+   'choice0'  : "Choice1",
+   'choice1'  : "Choice2",
+   'choice2'  : "Choice3",
+   'choice3'  : "Choice4",
+   'choice4'  : "Choice5"
 };
 
 var totalQuestions = 5000;
@@ -48,8 +48,12 @@ function shuffle(array) {
   return array;
 }
 
-todoApp.constant("dataUrl", "word-list?word-number=")
-  .controller("vocab_builder_controller", function ($scope) {
+function getUrlForWord(word) {
+  url = "word-list?wordNumber=" + word;
+  return url;
+}
+
+todoApp.controller("vocab_builder_controller", function ($scope, $http) {
     $scope.current_result = current_result;
 
     var totalAsked = 0;
@@ -70,12 +74,29 @@ todoApp.constant("dataUrl", "word-list?word-number=")
        rightAnswer = choices.indexOf(question);
 
        var nextQuestion = {
-          'question' : question,
-          'choice1'  : choices[0],
-          'choice2'  : choices[1],
-          'choice3'  : choices[2],
-          'choice4'  : choices[3],
-          'choice5'  : choices[4]
+          'question' : 'Fetching Question',
+          'choice0'  : 'Fetching choices',
+          'choice1'  : 'Fetching choices',
+          'choice2'  : 'Fetching choices',
+          'choice3'  : 'Fetching choices',
+          'choice4'  : 'Fetching choices'
+       }
+
+       for (var i = 0 ; i < 5 ; i++) {
+         $http.get(getUrlForWord(choices[i])).
+           success((function (i) {
+               return function(data) {
+               var word = data;
+               nextQuestion['choice' + i] = word[0]['meaning'];
+               if (i == rightAnswer) {
+                 nextQuestion['question'] = word[0]['word'];
+               }
+               $scope.current_result = nextQuestion;
+             }
+           })(i))
+           .error(function (error) {
+
+           });
        }
 
        $scope.current_result = nextQuestion;
