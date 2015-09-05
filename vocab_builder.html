@@ -14,9 +14,9 @@
     <div class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">BUILD YOUR VOCABULARY</a>
     </div>
-    <div class="col-xs-8">
-      <div class="well" >
-                <strong>{{current_result.question}}</strong>
+    <div class="col-xs-6">
+      <div>
+          <h2><strong>{{current_result.question}}</strong></h2>
       </div>
       <div class="radio" >
               <label><input type="radio" name="answerchoice" ng-click="checkAnswer(0)">{{current_result.choice0}}</label>
@@ -45,6 +45,16 @@
           <span ng-show="answered">Next Queston</span>
           <span ng-hide="answered">Skip this Queston</span>
       </button>
+    </div>
+    <div class="col-xs-2" class="well">
+      <div class="navbar">
+         <h2><strong>Performance</strong></h2>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">Total Asked: {{totalAsked}}</li>
+        <li class="list-group-item">Correct: {{rightAnswer}}</li>
+        <li class="list-group-item">Percentage: {{rightPercent}}</li>
+      </ul>
     </div>
 </body>
 </html>

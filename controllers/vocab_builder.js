@@ -56,9 +56,9 @@ function getUrlForWord(word) {
 todoApp.controller("vocab_builder_controller", function ($scope, $http) {
     $scope.current_result = current_result;
 
-    var totalAsked = 0;
-    var totalRight = 0;
-    var rightAnswer = 0;
+    $scope.totalAsked = 0;
+    $scope.rightAnswer = 0;
+    $scope.rightPercent = 0;
 
     $scope.answered = 0;
     $scope.answer_result = "your answer is being checked";
@@ -89,7 +89,8 @@ todoApp.controller("vocab_builder_controller", function ($scope, $http) {
                var word = data;
                nextQuestion['choice' + i] = word[0]['meaning'];
                if (i == rightAnswer) {
-                 nextQuestion['question'] = word[0]['word'];
+                 wordMeaning = word[0]['word'];
+                 nextQuestion['question'] = wordMeaning.charAt(0).toUpperCase() + wordMeaning.slice(1);
                }
                $scope.current_result = nextQuestion;
              }
@@ -101,11 +102,17 @@ todoApp.controller("vocab_builder_controller", function ($scope, $http) {
 
        $scope.current_result = nextQuestion;
        $scope.answered = 0;
+
+       $scope.totalAsked += 1;
     }
 
     $scope.checkAnswer = function (answer) {
       if (answer == rightAnswer) {
         $scope.answer_result = "Your answer is right";
+        if ($scope.answered == 0) {
+          $scope.rightAnswer += 1;
+          $scope.rightPercent = ($scope.rightAnswer * 100.0/ $scope.totalAsked)
+        }
       } else {
         $scope.answer_result = "Your answer is wrong";
       }
