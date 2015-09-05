@@ -40,6 +40,23 @@
               <label><input type="radio" name="answerchoice">{{current_result.choice4}}</label>
             </h2>
       </div>
+      <div class="radio" >
+            <h2>
+              <label><input type="radio" name="answerchoice">{{current_result.choice5}}</label>
+            </h2>
+      </div>
+      <div ng-hide="answered">
+            <h3>
+                Pick a meaning that's closest to the given word.
+            </h3>
+      </div>
+      <div ng-show="answered">
+            <h3>{{answer_result}}</h3>
+      </div>
+      <button ng-click="getNextQuestion()" class="btn">
+          <span ng-show="answered">Next Queston</span>
+          <span ng-hide="answered">Skip this Queston</span>
+      </button>
     </div>
 </body>
 </html>
